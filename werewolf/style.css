@@ -1,0 +1,301 @@
+* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+        
+        .night-theme {
+            background-color: #001122;
+            color: white;
+        }
+        
+        .day-theme {
+            background-color: #fffef7;
+            color: #333;
+        }
+        
+        .game-container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .night-theme .game-container {
+            background-color: #002244;
+            box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+        }
+        
+        .day-theme .game-container {
+            background-color: #ffffff;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            color: black;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 250px;
+            max-width: 90%;
+        }
+
+        .night-theme .modal-content {
+            background-color: #002244;
+            color: white;
+        }
+        
+        input, select, button {
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #3d8b40;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .night-theme button {
+            background-color: #2d5aa0;
+        }
+        
+        .night-theme button:hover {
+            background-color: #1e3f73;
+        }
+        
+        .player-list {
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .dead-player {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+        
+        .countdown {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.05);
+        }
+        
+        .night-theme .countdown {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .countdown.warning {
+            color: #ff4444;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.5; }
+        }
+        
+        .role-info {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            background: rgba(0,0,0,0.03);
+        }
+        
+        .night-theme .role-info {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .role-selection {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .role-count {
+            width: 60px;
+        }
+        
+        h1, h2, h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .night-theme h1,
+        .night-theme h2,
+        .night-theme h3 {
+            color: #e6f7ff;
+        }
+        
+        #hunter-revenge-block {
+            margin-top: 15px;
+            padding: 15px;
+            border: 2px solid #c44545;
+            border-radius: 8px;
+            background-color: #fff5f5;
+        }
+        
+        .night-theme #hunter-revenge-block {
+            background-color: rgba(42, 0, 0, 0.3);
+        }
+        
+        .phase-title {
+            font-size: 1.4em;
+            margin: 10px 0 20px;
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            background: #f0f0f0;
+        }
+        
+        .night-theme .phase-title {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .player-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .night-theme .player-card {
+            background: rgba(26, 58, 95, 0.7);
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .vote-option {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: left;
+        }
+        
+        .night-theme .vote-option {
+            background: rgba(255,255,255,0.07);
+        }
+        
+        .vote-option:hover {
+            background: rgba(0,0,0,0.08);
+        }
+        
+        .night-theme .vote-option:hover {
+            background: rgba(255,255,255,0.12);
+        }
+        
+        .player-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        
+        .section {
+            margin: 25px 0;
+        }
+        
+        .role-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .night-theme .role-name {
+            color: #e6f7ff;
+        }
+        
+        .minimal-btn {
+            background: transparent;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .night-theme .minimal-btn {
+            border-color: #2d5aa0;
+            color: #2d5aa0;
+        }
+        
+        .minimal-btn:hover {
+            background: #4CAF10;
+            color: white;
+        }
+        
+        .night-theme .minimal-btn:hover {
+            background: #2d5aa0;
+            color: white;
+        }
+        
+        .restriction-note {
+            font-size: 0.9em;
+            color: #ff4444;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .night-theme .restriction-note {
+            color: #ff9999;
+        }

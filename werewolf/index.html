@@ -1,0 +1,132 @@
+<div class="game-container">
+        <h1>Werewolf Game</h1>
+        <div class="phase-title">Setup Phase</div>
+        
+        <!-- Setup Phase -->
+        <div id="setup-phase">
+            <div class="player-card">
+                <h2>Add Players</h2>
+                <div class="section">
+                    <input type="text" id="player-name" placeholder="Player name">
+                    <button onclick="addPlayer()">Add Player</button>
+                </div>
+                <div id="players-list" class="player-list"></div>
+                <p id="role-count-info">Players: 0, Roles: 0</p>
+            </div>
+            
+            <div id="role-setup" class="player-card hidden">
+                <h2>Role Configuration</h2>
+                <div id="roles-config"></div>
+                <button onclick="startGame()">Start Game</button>
+            </div>
+        </div>
+        
+        <!-- Game Phase -->
+        <div id="game-phase" class="hidden">
+            <!-- Night Phase -->
+            <div id="night-passing" class="player-card hidden">
+                <h2>Night Phase <span id="night-number"></span></h2>
+                
+                <!-- Pass Screen -->
+                <div id="pass-screen">
+                    <div class="section">
+                        <h3>Pass the device to:</h3>
+                        <div class="player-name" id="pass-to-name"></div>
+                    </div>
+                    <button class="minimal-btn" onclick="showPlayerScreen()">Show Role</button>
+                </div>
+                
+                <!-- Player Screen -->
+                <div id="player-screen" class="hidden">
+                    <div class="section">
+                        <div class="player-name" id="current-player-name"></div>
+                        <p>Role: <span class="role-name" id="current-player-role"></span></p>
+                        <div id="role-description" class="role-info"></div>
+                    </div>
+                    
+                    <div id="player-actions" class="role-info"></div>
+                    
+                    <button id="player-confirm" onclick="confirmPlayerAction()" disabled>Confirm</button>
+                </div>
+            </div>
+            
+            <!-- Day Phase -->
+            <div id="day-phase" class="player-card hidden">
+                <h2>Day Phase <span id="day-number"></span></h2>
+                <div id="day-summary" class="section"></div>
+                
+                <!-- Hunter Revenge (Night Deaths) -->
+                <div id="hunter-revenge" class="hidden">
+                    <h3>Hunter's Revenge</h3>
+                    <p><span class="player-name" id="hunter-name"></span> has died and gets to kill someone!</p>
+                    <div id="hunter-targets" class="section">
+                        <select id="hunter-target">
+                            <option value="">Select target</option>
+                        </select>
+                    </div>
+                    <button id="confirm-hunter-kill" onclick="confirmHunterKill()">Confirm Kill</button>
+                </div>
+                
+                <!-- Discussion -->
+                <div id="day-discussion" class="hidden">
+                    <h3>Discussion Time</h3>
+                    <div id="discussion-timer" class="countdown">5:00</div>
+                    <button class="minimal-btn" onclick="startVoting()">Start Voting</button>
+                </div>
+            </div>
+            
+            <!-- Voting Phase -->
+            <div id="voting-phase" class="player-card hidden">
+                <h2>Voting Phase</h2>
+                
+                <!-- Pass Screen -->
+                <div id="vote-pass-screen">
+                    <div class="section">
+                        <h3>Pass the device to:</h3>
+                        <div class="player-name" id="vote-pass-name"></div>
+                    </div>
+                    <button class="minimal-btn" onclick="showVoteScreen()">Vote Now</button>
+                </div>
+                
+                <!-- Vote Screen -->
+                <div id="vote-screen" class="hidden">
+                    <h3>Vote as: <span class="player-name" id="voting-player-name"></span></h3>
+                    <div id="vote-options" class="role-info"></div>
+                    <button id="cast-vote" onclick="castVote()" disabled>Cast Vote</button>
+                </div>
+                
+                <!-- Vote Results -->
+                <div id="vote-results" class="hidden">
+                    <h3>Voting Results</h3>
+                    <div id="vote-summary" class="section"></div>
+                    <button id="continue-from-vote" class="minimal-btn">Continue to Night</button>
+                </div>
+                
+                <!-- Hunter Revenge (After Voting) -->
+                <div id="vote-hunter-revenge" class="hidden">
+                    <h3>Hunter's Revenge</h3>
+                    <p><span class="player-name" id="vote-hunter-name"></span> can take revenge!</p>
+                    <select id="vote-hunter-target">
+                        <option value="">Select target</option>
+                    </select>
+                    <button id="confirm-vote-hunter-kill" onclick="confirmVoteHunterKill()">Confirm Kill</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game Over -->
+        <div id="game-over" class="player-card hidden">
+            <h2>Game Over</h2>
+            <div id="winner-announcement" class="section"></div>
+            <button onclick="location.reload()">Play Again</button>
+        </div>
+        
+        <!-- Seer Modal -->
+        <div id="seer-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Seer's Vision</h3>
+                <p id="seer-modal-text"></p>
+                <button onclick="closeSeerModal()">Close</button>
+            </div>
+        </div>
+    </div>
