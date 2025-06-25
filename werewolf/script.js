@@ -552,8 +552,10 @@
             
             if (nightDeaths.length === 0) {
                 summaryDiv.innerHTML = '<p>No one died during the night.</p>';
+            logEvent(`Night ${gameState.nightNumber}: No one died.`);
             } else {
-                summaryDiv.innerHTML = `<p><strong>Deaths during the night:</strong></p>` +
+                logEvent(`Night ${gameState.nightNumber}: ${nightDeaths.map(d => d.name + ' died').join(', ')}.`);
+            summaryDiv.innerHTML = `<p><strong>Deaths during the night:</strong></p>` +
                     nightDeaths.map(death => `<p>${death.name} was killed by ${death.cause}</p>`).join('');
             }
         }
@@ -586,6 +588,7 @@
                 return;
             }
 
+            logEvent(`${gameState.hunterRevengeQueue[0]} shot ${target} as hunter's revenge.`);
             const index = gameState.alivePlayers.indexOf(target);
             if (index !== -1) {
                 gameState.alivePlayers.splice(index, 1);
@@ -745,6 +748,7 @@
             if (playersWithMaxVotes.length === 1 && maxVotes > totalVoters / 2) {
                 burnedPlayer = playersWithMaxVotes[0];
                 summaryHTML += `<p><strong>${burnedPlayer} is burned at the stake!</strong></p>`;
+            logEvent(`Day ${gameState.dayNumber}: ${burnedPlayer} was burned at the stake.`);
 
                 const index = gameState.alivePlayers.indexOf(burnedPlayer);
                 if (index !== -1) {
@@ -773,6 +777,7 @@
                 }
             } else {
                 summaryHTML += '<p><strong>No one is burned (tie vote, no votes, or no majority).</strong></p>';
+            logEvent(`Day ${gameState.dayNumber}: No one was burned.`);
             }
 
             document.getElementById('vote-summary').innerHTML = summaryHTML;
@@ -788,7 +793,7 @@
             } else {
                 continueBtn.style.display = 'block';
             }
-            handleWerewolfPromotion();  
+            handleWerewolfPromotion();
             if (checkWinConditions()) return;
         }
 
@@ -819,6 +824,7 @@
                 return;
             }
 
+            logEvent(`${gameState.hunterRevengeQueue[0]} shot ${target} as hunter's revenge.`);
             const index = gameState.alivePlayers.indexOf(target);
             if (index !== -1) {
                 gameState.alivePlayers.splice(index, 1);
@@ -973,6 +979,16 @@
             
             return unassigned;
         }
+
+        
+        function logEvent(message) {
+            const logDiv = document.getElementById('event-log');
+            const entry = document.createElement('div');
+            entry.textContent = message;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight; // Auto-scroll
+        }
+
 
         function closeSeerModal() {
             document.getElementById('seer-modal').classList.add('hidden');
