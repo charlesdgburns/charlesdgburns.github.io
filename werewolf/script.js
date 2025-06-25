@@ -15,8 +15,8 @@
             passQueue: [],
             isVoting: false,
             discussionTimer: null,
-            lastDoctorSave: null, // Track last saved player
-            previousNightDoctorSave: null, // Track who was saved the previous night
+            lastDoctorSave: null,
+            previousNightDoctorSave: null,
             availableRoles: {
                 'Alpha Werewolf': { count: 0, max: 1 },
                 'Beta Werewolf': { count: 0, max: 10 },
@@ -160,6 +160,9 @@
             }
 
             assignRoles();
+            localStorage.setItem('werewolfPlayers', JSON.stringify(gameState.players));
+            localStorage.setItem('werewolfRoles', JSON.stringify(gameState.availableRoles));
+
             gameState.alivePlayers = [...gameState.players];
             
             gameState.currentPhase = 'night';
@@ -785,9 +788,7 @@
             } else {
                 continueBtn.style.display = 'block';
             }
-
-            handleWerewolfPromotion();
-            
+            handleWerewolfPromotion();  
             if (checkWinConditions()) return;
         }
 
@@ -983,5 +984,18 @@
 
         // Initialize the game
         document.addEventListener('DOMContentLoaded', function() {
+
+        const savedPlayers = localStorage.getItem('werewolfPlayers');
+        const savedRoles = localStorage.getItem('werewolfRoles');
+        if (savedPlayers && savedRoles) {
+            gameState.players = JSON.parse(savedPlayers);
+            gameState.availableRoles = JSON.parse(savedRoles);
+            updatePlayersList();
+            if (gameState.players.length >= 3) {
+                document.getElementById('role-setup').classList.remove('hidden');
+                setupRoleSelection();
+            }
+        }
+
             document.getElementById('player-name').focus();
         });
