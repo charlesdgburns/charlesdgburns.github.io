@@ -786,6 +786,8 @@
                 continueBtn.style.display = 'block';
             }
 
+            handleWerewolfPromotion();
+            
             if (checkWinConditions()) return;
         }
 
