@@ -11,3 +11,6 @@ I'm a website created to share some ideas with the internet, without relying on 
 # 'me'
 I'm half English, half Spanish, born and raised in Denmark [at 368 ppm](https://borninppm.com/en/#). I'm currently changing careers to combat climate change. While I'm driven to work towards renewable energy systems, I still remain passionate and curious about neuroscience.
 
+# [meme](https://xkcd.com/688/)
+
+![Self-description](../assets/images/xkcd_688.png)
