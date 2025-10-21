@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<div class="section-header">
+    {% if page.description %}
+        <div class="definition">
+            <span class="definition-label">{{ page.title | downcase }}</span>
+            <span class="definition-separator">·</span>
+            <span class="definition-text">{{ page.description }}</span>
+        </div>
+    {% endif %}
+</div>
+
+<div class="section-content">
+    {{ content }}
+</div>

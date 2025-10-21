@@ -1,0 +1,54 @@
+{% comment %}
+  Dynamic submenu generation - only show if there are actual subpages
+{% endcomment %}
+
+{% assign section_path = include.section | prepend: '/' | append: '/' %}
+{% assign section_pages = site.pages | where_exp: "page", "page.path contains include.section" %}
+{% assign section_pages = section_pages | where_exp: "page", "page.path != include.section" %}
+{% assign section_pages = section_pages | where_exp: "page", "page.title != nil" %}
+
+{% comment %}
+  Count actual subpages (excluding index files)
+{% endcomment %}
+{% assign subpage_count = 0 %}
+{% for page in section_pages %}
+    {% unless page.path contains 'index' %}
+        {% assign subpage_count = subpage_count | plus: 1 %}
+    {% endunless %}
+{% endfor %}
+
+{% comment %}
+  Also count collection items for art section
+{% endcomment %}
+{% if include.section == 'art' %}
+    {% assign subpage_count = subpage_count | plus: site.artworks.size %}
+{% endif %}
+
+{% comment %}
+  Only render submenu if there are subpages
+{% endcomment %}
+{% if subpage_count > 0 %}
+<div class="submenu-container">
+    <nav class="submenu" id="submenu">
+        <ul class="submenu-list">
+            {% for page in section_pages %}
+                {% unless page.path contains 'index' %}
+                    <li>
+                        <a href="{{ page.url | relative_url }}">
+                            {{ page.title | default: page.name | replace: '-', ' ' | replace: '_', ' ' | capitalize }}
+                        </a>
+                    </li>
+                {% endunless %}
+            {% endfor %}
+            
+            {% if include.section == 'art' %}
+                {% for artwork in site.artworks %}
+                    <li>
+                        <a href="{{ artwork.url | relative_url }}">{{ artwork.title }}</a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}

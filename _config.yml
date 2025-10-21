@@ -1,3 +1,38 @@
-theme: jekyll-theme-minimal
-title: Home sweet home
-description: Coming soon
+title: Charles Burns
+description: meep moop
+url: "https://charlesdgburns.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Collections for organized content
+collections:
+  artworks:
+    output: true
+    permalink: ./art/:name/
+  publications:
+    output: true
+    permalink: ./academia/:name/
+
+# Navigation sections (used for automatic submenu generation)
+sections:
+  - name: about
+    title: About
+    path: ./about/
+  - name: academia
+    title: Academia
+    path: ./academia/
+  - name: art
+    title: Art
+    path: ./art/
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

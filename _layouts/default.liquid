@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+    
+    <!-- Page-specific CSS -->
+    {% if page.custom_css %}
+        {% for stylesheet in page.custom_css %}
+            <link rel="stylesheet" href="{{ './css/' | append: stylesheet | append: '.css' | relative_url }}">
+        {% endfor %}
+    {% endif %}
+    
+    <!-- Page-specific inline styles -->
+    {% if page.custom_styles %}
+        <style>{{ page.custom_styles }}</style>
+    {% endif %}
+</head>
+<body>
+    <header class="header">
+        {% include navigation.html %}
+        {% include signature.html %}
+    </header>
+
+    <!-- Dynamic submenu for section pages -->
+    {% if page.section %}
+        {% include submenu.html section=page.section %}
+    {% endif %}
+
+    <main class="{% if page.layout == 'section' %}section-page{% else %}main-content{% endif %}">
+        {{ content }}
+    </main>
+
+    <script src="{{ './js/script.js' | relative_url }}"></script>
+    
+    <!-- Page-specific JavaScript -->
+    {% if page.custom_js %}
+        {% for script in page.custom_js %}
+            <script src="{{ './js/' | append: script | append: '.js' | relative_url }}"></script>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

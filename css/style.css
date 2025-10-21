@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #fefefe;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 60px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #999;           /* Changed from #333 to grey */
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.3s ease;  /* Added smooth transition */
+}
+
+.nav-menu li a:hover {
+    color: #333;
+}
+
+.nav-menu li a.active {
+    color: #333;           /* Keep active page dark */
+    font-weight: 500;
+}
+
+.signature {
+    width: 180px;         
+    height: 60px;        
+    cursor: pointer;    
+}
+
+.signature img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.signature-link {
+    text-decoration: none;
+}
+
+.signature-link:hover .signature {
+    opacity: 0.8;         /* Subtle hover effect */
+    transition: opacity 0.3s ease;
+}
+
+/* Global Submenu Styles */
+.submenu-container {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 40px;
+}
+
+.submenu-container.active {
+    height: 60px;
+}
+
+.submenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    border-bottom: 1px solid #e0e0e0;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submenu-container.active .submenu {
+    transform: translateY(0);
+}
+
+.submenu-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.submenu-list li a {
+    text-decoration: none;
+    color: #666;
+    font-size: 16px;
+    font-weight: 300;
+    transition: color 0.3s ease;
+}
+
+.submenu-list li a:hover {
+    color: #333;
+}
+
+/* Homepage centered layout */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+/* Section pages - single column layout */
+.section-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.center-nav {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+}
+
+.center-nav a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 48px;
+    font-weight: 300;
+    transition: color 0.3s ease;
+    letter-spacing: 2px;
+}
+
+.center-nav a:hover {
+    color: #333;
+}
+
+/* Section Layouts */
+.section-header {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.section-content {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.definition {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.definition-label {
+    font-weight: 600;
+    color: #999;
+    font-style: normal;
+}
+
+.definition-separator {
+    margin: 0 8px;
+    color: #ccc;
+}
+
+.section-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.section-content p {
+    margin-bottom: 24px;
+}
+
+.section-content h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #333;
+    margin: 48px 0 20px;
+    letter-spacing: 0.5px;
+}
+
+.section-content h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #555;
+    margin: 32px 0 16px;
+}
+
+.section-content a {
+    color: #666;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+.section-content a:hover {
+    border-bottom-color: #333;
+}
+
+/* Project List Styling */
+.project-list {
+    list-style: none;
+    margin: 32px 0;
+}
+
+.project-list li {
+    margin-bottom: 32px;
+    padding-left: 0;
+}
+
+.project-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.project-meta {
+    font-size: 15px;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.project-description {
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .section-header,
+    .section-content {
+        max-width: 100%;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .definition {
+        font-size: 16px;
+    }
+}
+
+
+
+/* mobile flexible content */
+
+@media (max-width: 768px) {
+    .section-page {
+        padding: 0 20px;
+    }
+    
+    .nav-menu {
+        gap: 20px;
+    }
+    
+    .center-nav {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .center-nav a {
+        font-size: 36px;
+    }
+}

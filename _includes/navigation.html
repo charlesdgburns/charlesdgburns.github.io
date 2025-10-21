@@ -1,0 +1,22 @@
+{% if page.layout == 'home' %}
+    <!-- Landing page navigation (randomized by JavaScript) -->
+    <nav>
+        <ul class="nav-menu" id="topNav">
+            <!-- Will be populated by JavaScript for random ordering -->
+        </ul>
+    </nav>
+{% else %}
+    <!-- Section page navigation (static) -->
+    <nav>
+        <ul class="nav-menu">
+            {% for section in site.sections %}
+                <li>
+                    <a href="{{ section.path | relative_url }}" 
+                       {% if page.section == section.name %}class="active"{% endif %}>
+                        {{ section.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}
