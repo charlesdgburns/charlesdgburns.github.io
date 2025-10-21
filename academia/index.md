@@ -14,6 +14,6 @@ Prior to this I spent my undergrad learning about maths and psychology. I also u
 
 # Degist
 
-I'm working on a project that aims to communicate the gist of an idea while preserving detail.  Pick a degist to dig into below:
+I'm working on a project that aims to communicate the gist of an idea while preserving detail. Stay tuned.
 
-Despite being a detail-oriented and perfectionist child, I only learnt to code at quite an old age. Perhaps it's because the code was rarely ever shown. Here's a collection of github Gist's that 
+
