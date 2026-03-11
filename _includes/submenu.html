@@ -1,0 +1,3 @@
+{% assign section_pages = site.pages | where_exp: "page", "page.path contains include.section" %}
+{% assign section_pages = section_pages | where_exp: "page", "page.path != include.section" %}
+{% assign section_pages = section_pages | where_exp: "page", "page.title != nil" %}

@@ -3,47 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
-    
-    <!-- Load wordcloud CSS if page uses it -->
-    {% if page.wordcloud %}
-        <link rel="stylesheet" href="{{ '/css/wordcloud.css' | relative_url }}">
-    {% endif %}
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.title }}</title>
 
-    <!-- Page-specific CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+    <!-- Start invisible — JS fades in once ready -->
+    <style>body { opacity: 0; background: #f4f2ee; }</style>
+
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+
     {% if page.custom_css %}
         {% for stylesheet in page.custom_css %}
             <link rel="stylesheet" href="{{ '/css/' | append: stylesheet | append: '.css' | relative_url }}">
         {% endfor %}
     {% endif %}
-        
-    <!-- Page-specific inline styles -->
+
     {% if page.custom_styles %}
         <style>{{ page.custom_styles }}</style>
     {% endif %}
 </head>
-<body>
+
+<!--
+    data-section is read by mosaic.js on subpages so the mosaic
+    knows which section's cards to display when navigating back.
+    It's also used by section pages to highlight the active nav link.
+-->
+<body data-section="{{ page.section | default: '' }}">
+
     <header class="header">
         {% include navigation.html %}
         {% include signature.html %}
     </header>
 
+    {% if page.section %}
+        {% include submenu.html section=page.section %}
+    {% endif %}
+
     <main class="{% if page.layout == 'section' %}section-page{% else %}main-content{% endif %}">
         {{ content }}
     </main>
 
+    <script>
+        // Fade the page in — mirrors what mosaic.js does on the landing page
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.transition = 'opacity 0.4s ease';
+            document.body.style.opacity = '1';
+        });
+    </script>
+
     <script src="{{ '/js/script.js' | relative_url }}"></script>
-    <!-- Load wordcloud JS if page uses it -->
-    {% if page.wordcloud %}
-        <script src="{{ '/js/wordcloud.js' | relative_url }}"></script>
-    {% endif %}
-    
-    <!-- Page-specific JavaScript -->
+
     {% if page.custom_js %}
         {% for script in page.custom_js %}
             <script src="{{ '/js/' | append: script | append: '.js' | relative_url }}"></script>
         {% endfor %}
     {% endif %}
+
 </body>
 </html>

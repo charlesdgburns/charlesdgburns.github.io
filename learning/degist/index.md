@@ -1,8 +1,9 @@
 ---
 layout: section
 title: Degist
-section: learning
-wordcloud: true
+description: big pictures and small details
+parent: learning
+size: medium
 ---
 
 # Degist

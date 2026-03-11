@@ -2,7 +2,8 @@
 layout: section
 title: Research
 section: learning
-wordcloud: true
+parent: learning
+size: medium
 ---
 
 # Research
