@@ -12,6 +12,11 @@ layout: default
     {% endif %}
 </div>
 
+
+{% if page.wordcloud %}
+    {% include wordcloud.html %}
+{% endif %}
+
 <div class="section-content">
     {{ content }}
 </div>

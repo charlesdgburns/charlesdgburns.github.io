@@ -10,26 +10,21 @@ sass:
   sass_dir: _sass
   style: compressed
 
-# Collections for organized content
-collections:
-  artworks:
-    output: true
-    permalink: ./art/:name/
-  publications:
-    output: true
-    permalink: ./academia/:name/
-
 # Navigation sections (used for automatic submenu generation)
 sections:
   - name: about
     title: About
     path: ./about/
-  - name: academia
-    title: Academia
-    path: ./academia/
-  - name: art
-    title: Art
-    path: ./art/
+  - name: creating
+    title: Creating
+    path: ./creating/
+  - name: learning
+    title: Learning
+    path: ./learning/
+  - name: life
+    title: Life
+    path: ./life/
+  
 
 # Exclude files from processing
 exclude:

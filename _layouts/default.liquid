@@ -6,13 +6,18 @@
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
     
+    <!-- Load wordcloud CSS if page uses it -->
+    {% if page.wordcloud %}
+        <link rel="stylesheet" href="{{ '/css/wordcloud.css' | relative_url }}">
+    {% endif %}
+
     <!-- Page-specific CSS -->
     {% if page.custom_css %}
         {% for stylesheet in page.custom_css %}
-            <link rel="stylesheet" href="{{ './css/' | append: stylesheet | append: '.css' | relative_url }}">
+            <link rel="stylesheet" href="{{ '/css/' | append: stylesheet | append: '.css' | relative_url }}">
         {% endfor %}
     {% endif %}
-    
+        
     <!-- Page-specific inline styles -->
     {% if page.custom_styles %}
         <style>{{ page.custom_styles }}</style>
@@ -24,21 +29,20 @@
         {% include signature.html %}
     </header>
 
-    <!-- Dynamic submenu for section pages -->
-    {% if page.section %}
-        {% include submenu.html section=page.section %}
-    {% endif %}
-
     <main class="{% if page.layout == 'section' %}section-page{% else %}main-content{% endif %}">
         {{ content }}
     </main>
 
-    <script src="{{ './js/script.js' | relative_url }}"></script>
+    <script src="{{ '/js/script.js' | relative_url }}"></script>
+    <!-- Load wordcloud JS if page uses it -->
+    {% if page.wordcloud %}
+        <script src="{{ '/js/wordcloud.js' | relative_url }}"></script>
+    {% endif %}
     
     <!-- Page-specific JavaScript -->
     {% if page.custom_js %}
         {% for script in page.custom_js %}
-            <script src="{{ './js/' | append: script | append: '.js' | relative_url }}"></script>
+            <script src="{{ '/js/' | append: script | append: '.js' | relative_url }}"></script>
         {% endfor %}
     {% endif %}
 </body>
