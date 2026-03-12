@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_69c3fc38110d976f58f71a52acdde5e7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+            bottom: 50px; left: 50px; width: 160px; height: 210px; 
+            border:2px solid grey; z-index:9999; font-size:12px;
+            background-color:white; padding:10px;">
+    <b>Hike Distance (km)</b><br>
+    <i style="background:#4CAF50; width:15px; height:15px; 
+              display:inline-block;"></i> &lt; 5<br>
+    <i style="background:#8BC34A; width:15px; height:15px; 
+              display:inline-block;"></i> 5-7<br>
+    <i style="background:#CDDC39; width:15px; height:15px; 
+              display:inline-block;"></i> 7-9<br>
+    <i style="background:#FFEB3B; width:15px; height:15px; 
+              display:inline-block;"></i> 9-11<br>
+    <i style="background:#FFC107; width:15px; height:15px; 
+              display:inline-block;"></i> 11-15<br>
+    <i style="background:#FF9800; width:15px; height:15px; 
+              display:inline-block;"></i> 15-20<br>
+    <i style="background:#FF5722; width:15px; height:15px; 
+              display:inline-block;"></i> &gt; 20<br>
+    <br>
+    <b>Campsites</b><br>
+    <i class="fa fa-tent" style="color:green"></i> Tent site
+</div>
+    
+            <div class="folium-map" id="map_69c3fc38110d976f58f71a52acdde5e7" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_69c3fc38110d976f58f71a52acdde5e7 = L.map(
+                "map_69c3fc38110d976f58f71a52acdde5e7",
+                {
+                    center: [53.3, -1.8],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_311e0457905c327724a951512b6d46ec = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_311e0457905c327724a951512b6d46ec.addTo(map_69c3fc38110d976f58f71a52acdde5e7);
+        
+    
+            var poly_line_82d23da9a3c2bfe12ace65b8299a3538 = L.polyline(
+                [[53.194, -1.872], [53.194, -1.872]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 1}
+            ).addTo(map_69c3fc38110d976f58f71a52acdde5e7);
+        
+    
+            poly_line_82d23da9a3c2bfe12ace65b8299a3538.bindTooltip(
+                `<div>
+                     Nearest campsite: Upper Hurst Farm (0.0 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var feature_group_c08300e7a95182b3441562f1fd1d5856 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_f041c3c0c9f000ee9d6e0046acf39fa8 = L.circleMarker(
+                [53.248, -1.622],
+                {"bubblingMouseEvents": true, "color": "#8BC34A", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8BC34A", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.066666666666666, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_23119f80c688ec464b7d317930c9294e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5294f7de851b379bff9dcd8613dfdb8c = $(`<div id="html_5294f7de851b379bff9dcd8613dfdb8c" style="width: 100.0%; height: 100.0%;">     <b>Chatsworth Hunting Tower</b><br>     <i>Distance: 6.1 km</i><br>     Features: Chatsworth Estate, woodland paths, aqueduct<br>     <a href="https://peakdistrictwalks.net/best-circular-walks-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_23119f80c688ec464b7d317930c9294e.setContent(html_5294f7de851b379bff9dcd8613dfdb8c);
+            
+        
+
+        circle_marker_f041c3c0c9f000ee9d6e0046acf39fa8.bindPopup(popup_23119f80c688ec464b7d317930c9294e)
+        ;
+
+        
+    
+    
+            circle_marker_f041c3c0c9f000ee9d6e0046acf39fa8.bindTooltip(
+                `<div>
+                     Chatsworth Hunting Tower (6.1 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3e01ecfa4ff3bc1c6970fe38b654bdb0 = L.circleMarker(
+                [53.395, -1.709],
+                {"bubblingMouseEvents": true, "color": "#CDDC39", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#CDDC39", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.733333333333334, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_c8bfbb7206888a4bc15de9f792be2564 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_715e3af040cb73d4c917ebce6c21217d = $(`<div id="html_715e3af040cb73d4c917ebce6c21217d" style="width: 100.0%; height: 100.0%;">     <b>Crook Hill</b><br>     <i>Distance: 7.1 km</i><br>     Features: Ladybower Reservoir vistas<br>     <a href="https://peakdistrictwalks.net/best-circular-walks-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_c8bfbb7206888a4bc15de9f792be2564.setContent(html_715e3af040cb73d4c917ebce6c21217d);
+            
+        
+
+        circle_marker_3e01ecfa4ff3bc1c6970fe38b654bdb0.bindPopup(popup_c8bfbb7206888a4bc15de9f792be2564)
+        ;
+
+        
+    
+    
+            circle_marker_3e01ecfa4ff3bc1c6970fe38b654bdb0.bindTooltip(
+                `<div>
+                     Crook Hill (7.1 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_11f29bc37078f1553d98b30e53cee863 = L.circleMarker(
+                [53.194, -1.872],
+                {"bubblingMouseEvents": true, "color": "#CDDC39", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#CDDC39", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.933333333333334, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_1ea4b00d1d415383b39e794ce60aaae1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e327044a636bc9a22d4fb3edcfe6b15d = $(`<div id="html_e327044a636bc9a22d4fb3edcfe6b15d" style="width: 100.0%; height: 100.0%;">     <b>Parkhouse & Chrome Hill</b><br>     <i>Distance: 7.4 km</i><br>     Features: Dragon's Back limestone ridges, fossils<br>     <a href="https://peakdistrictwalks.net/best-circular-walks-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_1ea4b00d1d415383b39e794ce60aaae1.setContent(html_e327044a636bc9a22d4fb3edcfe6b15d);
+            
+        
+
+        circle_marker_11f29bc37078f1553d98b30e53cee863.bindPopup(popup_1ea4b00d1d415383b39e794ce60aaae1)
+        ;
+
+        
+    
+    
+            circle_marker_11f29bc37078f1553d98b30e53cee863.bindTooltip(
+                `<div>
+                     Parkhouse & Chrome Hill (7.4 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_faacd75f7e3f5890f4a8169823cc944a = L.circleMarker(
+                [53.365, -1.816],
+                {"bubblingMouseEvents": true, "color": "#CDDC39", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#CDDC39", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.933333333333334, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_9e140e1b15f8a6fe17a435ff75967c01 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_29c96693b1fcfe9a7ae43fab276d8c63 = $(`<div id="html_29c96693b1fcfe9a7ae43fab276d8c63" style="width: 100.0%; height: 100.0%;">     <b>Grindslow Knoll</b><br>     <i>Distance: 8.9 km</i><br>     Features: Kinder Plateau, Pennine Way start<br>     <a href="https://peakdistrictwalks.net/best-circular-walks-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_9e140e1b15f8a6fe17a435ff75967c01.setContent(html_29c96693b1fcfe9a7ae43fab276d8c63);
+            
+        
+
+        circle_marker_faacd75f7e3f5890f4a8169823cc944a.bindPopup(popup_9e140e1b15f8a6fe17a435ff75967c01)
+        ;
+
+        
+    
+    
+            circle_marker_faacd75f7e3f5890f4a8169823cc944a.bindTooltip(
+                `<div>
+                     Grindslow Knoll (8.9 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3a4ada6d6e57647d773e425baa51f7d8 = L.circleMarker(
+                [53.196, -1.997],
+                {"bubblingMouseEvents": true, "color": "#CDDC39", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#CDDC39", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.466666666666665, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_14badadbe42235bfffdb895f2b3cb901 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ac61e91be4c3804983c35c9b56115a51 = $(`<div id="html_ac61e91be4c3804983c35c9b56115a51" style="width: 100.0%; height: 100.0%;">     <b>Lud's Church</b><br>     <i>Distance: 9.7 km</i><br>     Features: Mossy chasm, riverside trails<br>     <a href="https://peakdistrictwalks.net/best-circular-walks-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_14badadbe42235bfffdb895f2b3cb901.setContent(html_ac61e91be4c3804983c35c9b56115a51);
+            
+        
+
+        circle_marker_3a4ada6d6e57647d773e425baa51f7d8.bindPopup(popup_14badadbe42235bfffdb895f2b3cb901)
+        ;
+
+        
+    
+    
+            circle_marker_3a4ada6d6e57647d773e425baa51f7d8.bindTooltip(
+                `<div>
+                     Lud's Church (9.7 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fac44cb590b7d7f8fa42d2782e42e746 = L.circleMarker(
+                [53.342, -1.776],
+                {"bubblingMouseEvents": true, "color": "#FFEB3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FFEB3B", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.266666666666666, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_f422bc274e388b250a4290abfa852721 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5e9b9580c8044ea7671b5c6511ed8797 = $(`<div id="html_5e9b9580c8044ea7671b5c6511ed8797" style="width: 100.0%; height: 100.0%;">     <b>Mam Tor & Lose Hill</b><br>     <i>Distance: 10.9 km</i><br>     Features: Great Ridge, 360° panoramas<br>     <a href="https://peakdistrictwalks.net/best-circular-walks-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_f422bc274e388b250a4290abfa852721.setContent(html_5e9b9580c8044ea7671b5c6511ed8797);
+            
+        
+
+        circle_marker_fac44cb590b7d7f8fa42d2782e42e746.bindPopup(popup_f422bc274e388b250a4290abfa852721)
+        ;
+
+        
+    
+    
+            circle_marker_fac44cb590b7d7f8fa42d2782e42e746.bindTooltip(
+                `<div>
+                     Mam Tor & Lose Hill (10.9 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a794d045cd019ded02d66655e8b7d3a5 = L.circleMarker(
+                [53.348, -1.689],
+                {"bubblingMouseEvents": true, "color": "#4CAF50", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4CAF50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.133333333333333, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_bc7a9a5c15bb6953cfde8fe5b6627399 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d13d66fa30988296ed26f76390a1545a = $(`<div id="html_d13d66fa30988296ed26f76390a1545a" style="width: 100.0%; height: 100.0%;">     <b>Bamford Edge</b><br>     <i>Distance: 3.2 km</i><br>     Features: Gritstone edge, reservoir views<br>     <a href="https://thewanderingwildflower.co.uk/beautiful-walks-in-the-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_bc7a9a5c15bb6953cfde8fe5b6627399.setContent(html_d13d66fa30988296ed26f76390a1545a);
+            
+        
+
+        circle_marker_a794d045cd019ded02d66655e8b7d3a5.bindPopup(popup_bc7a9a5c15bb6953cfde8fe5b6627399)
+        ;
+
+        
+    
+    
+            circle_marker_a794d045cd019ded02d66655e8b7d3a5.bindTooltip(
+                `<div>
+                     Bamford Edge (3.2 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_19a3d038767f16598850735b6c1c8aec = L.circleMarker(
+                [53.097, -1.838],
+                {"bubblingMouseEvents": true, "color": "#FFEB3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FFEB3B", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_06d49bf3cdb7aaa7d50dcd1da9b6bd70 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_80ee6e5560b173a3c8ae1e79e8f61b04 = $(`<div id="html_80ee6e5560b173a3c8ae1e79e8f61b04" style="width: 100.0%; height: 100.0%;">     <b>Thor's Cave</b><br>     <i>Distance: 10.5 km</i><br>     Features: Limestone cave, Manifold Valley<br>     <a href="https://thewanderingwildflower.co.uk/beautiful-walks-in-the-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_06d49bf3cdb7aaa7d50dcd1da9b6bd70.setContent(html_80ee6e5560b173a3c8ae1e79e8f61b04);
+            
+        
+
+        circle_marker_19a3d038767f16598850735b6c1c8aec.bindPopup(popup_06d49bf3cdb7aaa7d50dcd1da9b6bd70)
+        ;
+
+        
+    
+    
+            circle_marker_19a3d038767f16598850735b6c1c8aec.bindTooltip(
+                `<div>
+                     Thor's Cave (10.5 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_967099d9caff32a08c7e5deefca701b8 = L.circleMarker(
+                [53.259, -1.911],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.866666666666667, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_6fddf8fae62be386449a3d3347c5fac4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ba64f040196a4a2551e64b21d58abddd = $(`<div id="html_ba64f040196a4a2551e64b21d58abddd" style="width: 100.0%; height: 100.0%;">     <b>Chrome Hill</b><br>     <i>Distance: 19.3 km</i><br>     Features: Fossil-rich ridges, challenging terrain<br>     <a href="https://www.walkingenglishman.com/peakdistrict.htm" target="_blank">Route Details</a>     </div>`)[0];
+                popup_6fddf8fae62be386449a3d3347c5fac4.setContent(html_ba64f040196a4a2551e64b21d58abddd);
+            
+        
+
+        circle_marker_967099d9caff32a08c7e5deefca701b8.bindPopup(popup_6fddf8fae62be386449a3d3347c5fac4)
+        ;
+
+        
+    
+    
+            circle_marker_967099d9caff32a08c7e5deefca701b8.bindTooltip(
+                `<div>
+                     Chrome Hill (19.3 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9ff1d9b2ee3ad6617e16770a8ff61df2 = L.circleMarker(
+                [53.34, -1.64],
+                {"bubblingMouseEvents": true, "color": "#FF5722", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF5722", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c08300e7a95182b3441562f1fd1d5856);
+        
+    
+        var popup_9444a47dbd19ef3436d90acf9db80bb0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2ca3168b424753f4109dfb364975222b = $(`<div id="html_2ca3168b424753f4109dfb364975222b" style="width: 100.0%; height: 100.0%;">     <b>Stanage Edge</b><br>     <i>Distance: 22.5 km</i><br>     Features: 9 Edges Challenge, moorland trig points<br>     <a href="https://peakdistrictwalks.net/best-circular-walks-peak-district/" target="_blank">Route Details</a>     </div>`)[0];
+                popup_9444a47dbd19ef3436d90acf9db80bb0.setContent(html_2ca3168b424753f4109dfb364975222b);
+            
+        
+
+        circle_marker_9ff1d9b2ee3ad6617e16770a8ff61df2.bindPopup(popup_9444a47dbd19ef3436d90acf9db80bb0)
+        ;
+
+        
+    
+    
+            circle_marker_9ff1d9b2ee3ad6617e16770a8ff61df2.bindTooltip(
+                `<div>
+                     Stanage Edge (22.5 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_c08300e7a95182b3441562f1fd1d5856.addTo(map_69c3fc38110d976f58f71a52acdde5e7);
+        
+    
+            var feature_group_cf7d19f53d37683354331f3c9133e0e0 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_3404dbb7daf0554940c3d721890e562d = L.marker(
+                [53.365, -1.845],
+                {
+}
+            ).addTo(feature_group_cf7d19f53d37683354331f3c9133e0e0);
+        
+    
+            var icon_6229c00cc67a51925ef844a882b36942 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tent",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_13ec03e346cb09e397676aee8adb0c79 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d124274bca338233e507397296612c5f = $(`<div id="html_d124274bca338233e507397296612c5f" style="width: 100.0%; height: 100.0%;">     <b>Upper Booth Farm Campsite</b><br>     <i>Price: £12/night</i><br>     Features: Pennine Way access, Kinder Scout hikes, river pitches, basic facilities<br>     <a href="https://tentbox.com/pages/campsites/upper-booth-farm-campsite" target="_blank">Book/Info</a>     </div>`)[0];
+                popup_13ec03e346cb09e397676aee8adb0c79.setContent(html_d124274bca338233e507397296612c5f);
+            
+        
+
+        marker_3404dbb7daf0554940c3d721890e562d.bindPopup(popup_13ec03e346cb09e397676aee8adb0c79)
+        ;
+
+        
+    
+    
+            marker_3404dbb7daf0554940c3d721890e562d.bindTooltip(
+                `<div>
+                     🏕️ Upper Booth Farm Campsite (£12)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3404dbb7daf0554940c3d721890e562d.setIcon(icon_6229c00cc67a51925ef844a882b36942);
+            
+    
+            var marker_4e22d03d6f68bdd571e4d5ebed32c46d = L.marker(
+                [53.18, -1.81],
+                {
+}
+            ).addTo(feature_group_cf7d19f53d37683354331f3c9133e0e0);
+        
+    
+            var icon_9185b043bd43ff78175a22162f8fe050 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tent",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f2e204083460744be51f4147cbdb4ec4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_be8d9320f4dd7f580f8a10807b3d7774 = $(`<div id="html_be8d9320f4dd7f580f8a10807b3d7774" style="width: 100.0%; height: 100.0%;">     <b>The Royal Oak Campsite</b><br>     <i>Price: £15/night</i><br>     Features: Tissington/High Peak Trail access, onsite pub, fire pits<br>     <a href="https://www.royaloakhurdlow.co.uk/camping" target="_blank">Book/Info</a>     </div>`)[0];
+                popup_f2e204083460744be51f4147cbdb4ec4.setContent(html_be8d9320f4dd7f580f8a10807b3d7774);
+            
+        
+
+        marker_4e22d03d6f68bdd571e4d5ebed32c46d.bindPopup(popup_f2e204083460744be51f4147cbdb4ec4)
+        ;
+
+        
+    
+    
+            marker_4e22d03d6f68bdd571e4d5ebed32c46d.bindTooltip(
+                `<div>
+                     🏕️ The Royal Oak Campsite (£15)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4e22d03d6f68bdd571e4d5ebed32c46d.setIcon(icon_9185b043bd43ff78175a22162f8fe050);
+            
+    
+            var marker_df9d8cfc69c88ecb884164ed8be199c5 = L.marker(
+                [53.345267, -1.64821],
+                {
+}
+            ).addTo(feature_group_cf7d19f53d37683354331f3c9133e0e0);
+        
+    
+            var icon_d79282727383c1350cda8fdc06c8e03a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tent",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7d282cc784f423d4a2e59c17262ceded = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1b797c340d414882055499ba1173c434 = $(`<div id="html_1b797c340d414882055499ba1173c434" style="width: 100.0%; height: 100.0%;">     <b>North Lees Campsite</b><br>     <i>Price: £12/night</i><br>     Features: Stanage Edge climbing, wheelbarrow transport, no solid fuels<br>     <a href="https://www.peakdistrict.gov.uk/visiting/things-to-do/camping/camping-northlees" target="_blank">Book/Info</a>     </div>`)[0];
+                popup_7d282cc784f423d4a2e59c17262ceded.setContent(html_1b797c340d414882055499ba1173c434);
+            
+        
+
+        marker_df9d8cfc69c88ecb884164ed8be199c5.bindPopup(popup_7d282cc784f423d4a2e59c17262ceded)
+        ;
+
+        
+    
+    
+            marker_df9d8cfc69c88ecb884164ed8be199c5.bindTooltip(
+                `<div>
+                     🏕️ North Lees Campsite (£12)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df9d8cfc69c88ecb884164ed8be199c5.setIcon(icon_d79282727383c1350cda8fdc06c8e03a);
+            
+    
+            var marker_19ba4380aa506c782a66e15fdd878d51 = L.marker(
+                [53.382, -1.944],
+                {
+}
+            ).addTo(feature_group_cf7d19f53d37683354331f3c9133e0e0);
+        
+    
+            var icon_3554a7a34b7d13479d88b74c5365eedb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tent",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7aeea52825668a5f69784671776a3246 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_2996d0ceb02752b23c23901c2cbf7905 = $(`<div id="html_2996d0ceb02752b23c23901c2cbf7905" style="width: 100.0%; height: 100.0%;">     <b>Newfold Farm</b><br>     <i>Price: £22/night</i><br>     Features: Kinder Scout access, Pennine Way trailhead<br>     <a href="https://www.terra-nova.co.uk/blog/best-places-to-camp/" target="_blank">Book/Info</a>     </div>`)[0];
+                popup_7aeea52825668a5f69784671776a3246.setContent(html_2996d0ceb02752b23c23901c2cbf7905);
+            
+        
+
+        marker_19ba4380aa506c782a66e15fdd878d51.bindPopup(popup_7aeea52825668a5f69784671776a3246)
+        ;
+
+        
+    
+    
+            marker_19ba4380aa506c782a66e15fdd878d51.bindTooltip(
+                `<div>
+                     🏕️ Newfold Farm (£22)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_19ba4380aa506c782a66e15fdd878d51.setIcon(icon_3554a7a34b7d13479d88b74c5365eedb);
+            
+    
+            var marker_fecbe1a0bdd01d11428066fb3a5af3bf = L.marker(
+                [53.4895, -1.893],
+                {
+}
+            ).addTo(feature_group_cf7d19f53d37683354331f3c9133e0e0);
+        
+    
+            var icon_f390aa04e1cdd3bf229cd0391ec152a8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tent",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3a7c80413c688ffb4e91dd78fddc70ac = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1929758758d1c9b792a2ec2a082aa53c = $(`<div id="html_1929758758d1c9b792a2ec2a082aa53c" style="width: 100.0%; height: 100.0%;">     <b>Crowden Camping Club Site</b><br>     <i>Price: £10.5/night</i><br>     Features: Pennine Way access, Howden Reservoir, walkers' paradise<br>     <a href="https://www.campingandcaravanningclub.co.uk/campsites/uk/glossop/crowden/crowden-camping-and-caravanning-club-site/" target="_blank">Book/Info</a>     </div>`)[0];
+                popup_3a7c80413c688ffb4e91dd78fddc70ac.setContent(html_1929758758d1c9b792a2ec2a082aa53c);
+            
+        
+
+        marker_fecbe1a0bdd01d11428066fb3a5af3bf.bindPopup(popup_3a7c80413c688ffb4e91dd78fddc70ac)
+        ;
+
+        
+    
+    
+            marker_fecbe1a0bdd01d11428066fb3a5af3bf.bindTooltip(
+                `<div>
+                     🏕️ Crowden Camping Club Site (£10.5)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fecbe1a0bdd01d11428066fb3a5af3bf.setIcon(icon_f390aa04e1cdd3bf229cd0391ec152a8);
+            
+    
+            var marker_64d1320abb425fd449e309344c591f29 = L.marker(
+                [53.015, -1.731],
+                {
+}
+            ).addTo(feature_group_cf7d19f53d37683354331f3c9133e0e0);
+        
+    
+            var icon_cd6c90631902f882efaeb38b0796cdcf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tent",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ed02bddd34bedc670e9eb61d2a4d715a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_86ad91e1e583dc793744571d6c887546 = $(`<div id="html_86ad91e1e583dc793744571d6c887546" style="width: 100.0%; height: 100.0%;">     <b>Callow Top Holiday Park</b><br>     <i>Price: £19/night</i><br>     Features: Heated pool, Tissington Trail access<br>     <a href="https://www.callowtop.co.uk" target="_blank">Book/Info</a>     </div>`)[0];
+                popup_ed02bddd34bedc670e9eb61d2a4d715a.setContent(html_86ad91e1e583dc793744571d6c887546);
+            
+        
+
+        marker_64d1320abb425fd449e309344c591f29.bindPopup(popup_ed02bddd34bedc670e9eb61d2a4d715a)
+        ;
+
+        
+    
+    
+            marker_64d1320abb425fd449e309344c591f29.bindTooltip(
+                `<div>
+                     🏕️ Callow Top Holiday Park (£19)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_64d1320abb425fd449e309344c591f29.setIcon(icon_cd6c90631902f882efaeb38b0796cdcf);
+            
+    
+            var marker_28a6d057ea7604c8395bbb932a06fac6 = L.marker(
+                [53.28, -1.76],
+                {
+}
+            ).addTo(feature_group_cf7d19f53d37683354331f3c9133e0e0);
+        
+    
+            var icon_479998fe9c2793609a5ab3204cea9633 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tent",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_eed7e576d6d4d884f86f4976f08b617b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bce137fe72b98a2c368d07589a19f2ca = $(`<div id="html_bce137fe72b98a2c368d07589a19f2ca" style="width: 100.0%; height: 100.0%;">     <b>Derbyshire Hills Campsite</b><br>     <i>Price: £15/night</i><br>     Features: Shepherds huts, adult-oriented, Monsal Trail<br>     <a href="https://www.derbyshirehills.co.uk" target="_blank">Book/Info</a>     </div>`)[0];
+                popup_eed7e576d6d4d884f86f4976f08b617b.setContent(html_bce137fe72b98a2c368d07589a19f2ca);
+            
+        
+
+        marker_28a6d057ea7604c8395bbb932a06fac6.bindPopup(popup_eed7e576d6d4d884f86f4976f08b617b)
+        ;
+
+        
+    
+    
+            marker_28a6d057ea7604c8395bbb932a06fac6.bindTooltip(
+                `<div>
+                     🏕️ Derbyshire Hills Campsite (£15)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_28a6d057ea7604c8395bbb932a06fac6.setIcon(icon_479998fe9c2793609a5ab3204cea9633);
+            
+    
+            var marker_43fbc29ead2a3ae2bc5ef07e40ab35e3 = L.marker(
+                [53.194, -1.872],
+                {
+}
+            ).addTo(feature_group_cf7d19f53d37683354331f3c9133e0e0);
+        
+    
+            var icon_654d4919434fe011db46283a4e1119ed = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tent",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_240b3d484beb474a66eea8737f16e62a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e2339f64b6ad71ace0271f26b138ad70 = $(`<div id="html_e2339f64b6ad71ace0271f26b138ad70" style="width: 100.0%; height: 100.0%;">     <b>Upper Hurst Farm</b><br>     <i>Price: £31/night</i><br>     Features: Panoramic views, alpacas/peacocks, year-round<br>     <a href="https://www.terra-nova.co.uk/blog/best-places-to-camp/" target="_blank">Book/Info</a>     </div>`)[0];
+                popup_240b3d484beb474a66eea8737f16e62a.setContent(html_e2339f64b6ad71ace0271f26b138ad70);
+            
+        
+
+        marker_43fbc29ead2a3ae2bc5ef07e40ab35e3.bindPopup(popup_240b3d484beb474a66eea8737f16e62a)
+        ;
+
+        
+    
+    
+            marker_43fbc29ead2a3ae2bc5ef07e40ab35e3.bindTooltip(
+                `<div>
+                     🏕️ Upper Hurst Farm (£31)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_43fbc29ead2a3ae2bc5ef07e40ab35e3.setIcon(icon_654d4919434fe011db46283a4e1119ed);
+            
+    
+            feature_group_cf7d19f53d37683354331f3c9133e0e0.addTo(map_69c3fc38110d976f58f71a52acdde5e7);
+        
+    
+            var layer_control_04728089278362680f561a31ecadcce8_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_311e0457905c327724a951512b6d46ec,
+                },
+                overlays :  {
+                    "Hiking Trails" : feature_group_c08300e7a95182b3441562f1fd1d5856,
+                    "Campsites" : feature_group_cf7d19f53d37683354331f3c9133e0e0,
+                },
+            };
+            let layer_control_04728089278362680f561a31ecadcce8 = L.control.layers(
+                layer_control_04728089278362680f561a31ecadcce8_layers.base_layers,
+                layer_control_04728089278362680f561a31ecadcce8_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_69c3fc38110d976f58f71a52acdde5e7);
+
+        
+</script>
+</html>

@@ -1,5 +1,5 @@
 --- 
-layout: section
+layout: default
 title: uh-bowt
 section: about
 description: on the subject of something/somebody

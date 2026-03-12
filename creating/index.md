@@ -1,6 +1,5 @@
 ---
-layout: cards
+layout: mosaic
 title: kree-ay-tuhng
-section: creating
-description: to bring into existence
+description: a place for creations
 ---

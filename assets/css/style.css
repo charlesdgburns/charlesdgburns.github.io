@@ -1,0 +1,125 @@
+/* style.css - The Global Foundation */
+
+:root {
+    --bg:          #f4f2ee;
+    --fg:          #1a1a18;
+    --muted:       #9a9690;
+    --border:      #d8d4cc;
+    --links:       #5ca6eb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Helvetica', Garamond, serif;
+    min-height: 100vh;
+}
+
+/* Global Link Reset: No underlines anywhere on the site */
+a {
+    text-decoration: none;
+}
+
+/* ── Unified Header ── */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Increased to ensure it stays above expansion effects */
+    background: rgba(244, 242, 238, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    height: 64px; /* Explicit height for script stability */
+    display: flex;
+    align-items: center;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    width: 100%;
+}
+
+.site-name {
+    font-family: 'Helvetica', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+
+.site-name:hover {
+    color: var(--fg);
+}
+
+.section-nav {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+}
+
+.section-nav a {
+    font-family: 'Helvetica', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+
+.section-nav a:hover, 
+.section-nav a.active { 
+    color: var(--fg); 
+}
+
+/* ── Content Prose ── */
+.page-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+.page-body { 
+    font-size: 18px; 
+    line-height: 1.8; 
+}
+
+/* Optional: if you want hyperlinks in your text to look distinct 
+   without an underline, you can give them a weight or a specific color */
+/* ── Hyperlinks in Body ── */
+.page-body a {
+    color: var(--links);
+    text-decoration: none;
+    position: relative;
+    /* inline-block can sometimes mess up multi-line headers, 
+       so we use inline and ensure the pseudo-element handles the width */
+    display: inline; 
+}
+
+.page-body a::after {
+    content: '';
+    position: absolute;
+    /* Position exactly at the bottom of the text baseline */
+    left: 0;
+    top: 1.05em; 
+    width: 100%;
+    height: 1px;
+    background-color: var(--links);
+    
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Specific adjustment for Headers to keep the line tight */
+.page-body h1 a::after,
+.page-body h2 a::after,
+.page-body h3 a::after {
+    top: 1.1em; /* Adjust this value (e.g., 1.05em to 1.15em) to dial it in */
+}
+
+.page-body a:hover::after {
+    transform: scaleX(1);
+}

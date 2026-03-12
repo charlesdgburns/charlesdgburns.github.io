@@ -1,9 +1,7 @@
 ---
-layout: section
+layout: default
 title: Research
-section: learning
-parent: learning
-size: medium
+
 ---
 
 # Research

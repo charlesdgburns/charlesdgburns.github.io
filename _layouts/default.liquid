@@ -8,57 +8,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
-    <!-- Start invisible — JS fades in once ready -->
-    <style>body { opacity: 0; background: #f4f2ee; }</style>
-
-    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
-
-    {% if page.custom_css %}
-        {% for stylesheet in page.custom_css %}
-            <link rel="stylesheet" href="{{ '/css/' | append: stylesheet | append: '.css' | relative_url }}">
-        {% endfor %}
-    {% endif %}
-
-    {% if page.custom_styles %}
-        <style>{{ page.custom_styles }}</style>
-    {% endif %}
+    <style>
+        main { opacity: 0; } 
+        body { background: #f4f2ee; margin: 0; opacity: 1; }
+    </style>
+    <link rel="stylesheet" href="{{ 'assets/css/style.css' | relative_url }}">
 </head>
 
-<!--
-    data-section is read by mosaic.js on subpages so the mosaic
-    knows which section's cards to display when navigating back.
-    It's also used by section pages to highlight the active nav link.
--->
-<body data-section="{{ page.section | default: '' }}">
+<body data-section="{{ page.dir | split: '/' | compact | first | default: '' }}">
 
-    <header class="header">
-        {% include navigation.html %}
-        {% include signature.html %}
-    </header>
+<header>
+    {% include navigation.html %}
+</header>
 
-    {% if page.section %}
-        {% include submenu.html section=page.section %}
-    {% endif %}
-
-    <main class="{% if page.layout == 'section' %}section-page{% else %}main-content{% endif %}">
+<main class="page-content">
+    <div class="page-body">
         {{ content }}
-    </main>
+    </div>
+</main>
 
-    <script>
-        // Fade the page in — mirrors what mosaic.js does on the landing page
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.style.transition = 'opacity 0.4s ease';
-            document.body.style.opacity = '1';
-        });
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-    <script src="{{ '/js/script.js' | relative_url }}"></script>
-
-    {% if page.custom_js %}
-        {% for script in page.custom_js %}
-            <script src="{{ '/js/' | append: script | append: '.js' | relative_url }}"></script>
-        {% endfor %}
-    {% endif %}
+        // Fade in ONLY the main content
+        const mainContent = document.querySelector('main');
+        if (mainContent) {
+            mainContent.style.transition = 'opacity 0.5s ease';
+            mainContent.style.opacity = '1';
+        }
+    });
+</script>
 
 </body>
 </html>

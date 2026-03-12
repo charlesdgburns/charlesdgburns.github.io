@@ -1,22 +1,30 @@
-{% if page.layout == 'home' %}
-    <!-- Landing page navigation (randomized by JavaScript) -->
-    <nav>
-        <ul class="nav-menu" id="topNav">
-            <!-- Will be populated by JavaScript for random ordering -->
-        </ul>
-    </nav>
-{% else %}
-    <!-- Section page navigation (static) -->
-    <nav>
-        <ul class="nav-menu">
-            {% for section in site.sections %}
-                <li>
-                    <a href="{{ section.path | relative_url }}" 
-                       {% if page.section == section.name %}class="active"{% endif %}>
-                        {{ section.title }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </nav>
-{% endif %}
+{% comment %} 
+  1. Split the URL by '/' to find out what folder we are in.
+  Example: "/learning/degist/blog01.html" becomes an array. 
+  Index 1 of that array will be "learning".
+{% endcomment %}
+{% assign url_parts = page.url | split: '/' %}
+{% assign current_section = url_parts[1] %}
+
+<nav class="site-nav">
+    <ul class="section-nav">
+        {% for section in site.sections %}
+            {% comment %} 2. Check if the loop's section matches our current URL section {% endcomment %}
+            {% if section.name == current_section %}
+                {% assign active_class = "active" %}
+            {% else %}
+                {% assign active_class = "" %}
+            {% endif %}
+
+            <li>
+                <a href="{{ section.path | relative_url }}" 
+                   class="{{ active_class }}" 
+                   data-section="{{ section.name }}">
+                    {{ section.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ '/' | relative_url }}" class="site-name">{{ site.title | default: "Charles Burns" }}</a>
+    
+</nav>

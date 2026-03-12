@@ -1,9 +1,7 @@
 ---
-layout: section
+layout: default
 title: Degist
 description: big pictures and small details
-parent: learning
-size: medium
 ---
 
 # Degist
